@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { ethers } from "ethers";
-
+import { ethers,  } from "ethers";
 
 function App() {
   const [tokens, setTokens] = useState([]);
   const [address, setAddress] = useState(""); 
-  console.log(ethers.utils);
+
+  
+ 
 
   //Handle form submission
   const handleSubmit = (e) => {
@@ -18,14 +19,17 @@ function App() {
     });
   };
 
-  //fetch tokens
+  
   const fetchTokens = async (address) => { 
+    
+    
+
     if (!ethers.utils.isAddress(address)) { 
       alert("Please enter a valid Ethereum wallet address");
       return;
     }
     const provider = new ethers.providers.JsonRpcProvider(
-      "https://polished-small-cherry.quiknode.pro/cd0b8ce6dfbe3834fe58670f4e0e6e8a250eac2b/"
+      "https://necessary-twilight-model.quiknode.pro/551290050c658a695ca395a3a0be97c745efd21c/"
     );
     const tokens = await provider.send("qn_getWalletTokenBalance", { 
       wallet: address,
@@ -71,7 +75,7 @@ function App() {
                 <tr key={index}>
                   <td className="whitespace-nowrap px-4 py-4 text-blue-500">{token.name}</td>
                   <td className="whitespace-nowrap px-4 py-4 text-blue-900">{token.symbol}</td>
-                  <td className="whitespace-nowrap px-4 py-4 text-gray-900">{utils.formatUnits(token.amount, token.decimals)}</td>
+                  <td className="whitespace-nowrap px-4 py-4 text-gray-900">{ethers.utils.formatUnits(token.amount, token.decimals)}</td>
                 </tr>
               ))}
             </tbody>
